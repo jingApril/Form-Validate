@@ -142,8 +142,7 @@
             <div class="row form-submit">
                 <div class="form-group row">
                     <div class="save_button">
-                        <button type="submit" class="btn btn-block btn-danger btn-submit"
-                        aria-disabled="true" id="Submit-Sure" disabled="disabled">确认报名</button>
+                        <button type="submit" class="btn btn-block btn-danger btn-submit" aria-disabled="true" id="Submit-Sure" disabled="disabled">确认报名</button>
                     </div>
                 </div>
                 <p class="save_hint">
@@ -155,7 +154,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="images/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <!-- 
+    <script src="images/jquery.validate.min.js"></script> -->
     <script src="images/file-upload.js"></script>
     <script>
     // 自定义文件上传样式
@@ -185,11 +187,11 @@
         // 同意条款
 
         $("#customControlInline").change(function() {
-            if ($(this).is(':checked')){
-				console.log($("#Submit-Sure"));
-				$("#Submit-Sure").removeAttr("disabled")
+            if ($(this).is(':checked')) {
+                console.log($("#Submit-Sure"));
+                $("#Submit-Sure").removeAttr("disabled")
             } else {
-            	$("#Submit-Sure").attr("disabled", "disabled")
+                $("#Submit-Sure").attr("disabled", "disabled")
             }
         });
 
@@ -241,6 +243,7 @@
         setFileloader2('#inputWorkPhoto', '#sucpic');
 
         $.validator.setDefaults({
+
             highlight: function(element) {
                 $(element).closest(".form-group").addClass("has-error");
             },
@@ -269,65 +272,70 @@
             }
         });
 
-		// console.log(workType)
-		// console.log(Name)
-		// console.log(Film)
-		// console.log(Phone)
-		// console.log(Id)
-		// console.log(Id)
-		// console.log(Teams)
-		// console.log(Director)
-		// console.log(WorkTitle)
-		// console.log(AboutWork)
-		// console.log(WorkVideo)
-		// console.log(WorkPhoto)
+        // console.log(workType)
+        // console.log(Name)
+        // console.log(Film)
+        // console.log(Phone)
+        // console.log(Id)
+        // console.log(Id)
+        // console.log(Teams)
+        // console.log(Director)
+        // console.log(WorkTitle)
+        // console.log(AboutWork)
+        // console.log(WorkVideo)
+        // console.log(WorkPhoto)
 
-      $("#Submit-Sure").click(function(e) {
+        $("#Submit-Sure").click(function(e) {
 
-        $("#myform").validate({
-            rules: {
-                workType: { required: true, },
-                inputName: { required: true, },
-                inputPhone: { required: true, },
-                inputId: { required: true, },
-                inputTeams: { required: true, },
-                inputDirector: { required: true, },
-                inputWorkTitle: { required: true, },
-                inputAboutWork: { required: true, }
-                // inputWorkVideo: { required: true, },
-                // inputWorkPhoto: { required: true, }
-            },
-            messages: {
-                workType: { required: "作品类型必填", },
-                inputName: { required: "报送人姓名必填", },
-                inputPhone: { required: "报送人姓名必填", },
-                inputId: { required: "身份证号码必填", },
-                inputTeams: { required: "主创人员必填", },
-                inputDirector: { required: "导演必填", },
-                inputWorkTitle: { required: "作品名称必填", },
-                inputAboutWork: { required: "介绍必填", }
-                //  inputWorkVideo: { required: "视频必须上传" },
-                // inputWorkPhoto: { required: "封面必须上传" }
-            },
-            submitHandler(function(form, event) {
+            $("#myform").validate({
 
-				event.preventDefault();
-				// $(form).submit(function()
-				var workType = $("input[type=radio][name=workType]:checked").val(); //作品类型
-				var Name = $("input#inputName").val(); //送报人姓名
-				var Film = $("input#inputFilm").val(); //联系电话
-				var Phone = $("input#inputPhone").val(); //身份证号码
-				var Id = $("input#inputId").val(); //身份证号码
-				var Teams = $("input#inputTeams").val(); //主创人员
-				var Director = $("input#inputDirector").val(); //导演
-				var WorkTitle = $("input#inputWorkTitle").val(); //作品名称
-				var AboutWork = $("textarea#inputAboutWork").val(); //短片介绍
-				// var WorkVideo = VideoUrl; //上传视频
-				// var WorkPhoto = ThumbUrl; //上传封面
-				var WorkVideo = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616093025726386.mp4";
-				var WorkPhoto = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616052795369426.jpg";
+                rules: {
+                    workType: { required: true, },
+                    inputName: { required: true, },
+                    inputPhone: { required: true, },
+                    inputId: { required: true, },
+                    inputTeams: { required: true, },
+                    inputDirector: { required: true, },
+                    inputWorkTitle: { required: true, },
+                    inputAboutWork: { required: true, }
+                    // inputWorkVideo: { required: true, },
+                    // inputWorkPhoto: { required: true, }
+                },
+                messages: {
+                    workType: { required: "作品类型必填", },
+                    inputName: { required: "报送人姓名必填", },
+                    inputPhone: { required: "报送人姓名必填", },
+                    inputId: { required: "身份证号码必填", },
+                    inputTeams: { required: "主创人员必填", },
+                    inputDirector: { required: "导演必填", },
+                    inputWorkTitle: { required: "作品名称必填", },
+                    inputAboutWork: { required: "介绍必填", }
+                    //  inputWorkVideo: { required: "视频必须上传" },
+                    // inputWorkPhoto: { required: "封面必须上传" }
+                },
+                submitHandler: function(form, event) {
 
-       			if (workType && Name.trim() && Film.trim() && Phone.trim() && Id.trim() && Teams.trim() && Director.trim() && WorkTitle.trim() && AboutWork.trim() && WorkVideo && WorkPhoto) {
+                    event.preventDefault();
+                    // $(form).submit(function()
+                    var workType = $("input[type=radio][name=workType]:checked").val(); //作品类型
+                    var Name = $("input#inputName").val(); //送报人姓名
+                    var Film = $("input#inputFilm").val(); //联系电话
+                    var Phone = $("input#inputPhone").val(); //身份证号码
+                    var Id = $("input#inputId").val(); //身份证号码
+                    var Teams = $("input#inputTeams").val(); //主创人员
+                    var Director = $("input#inputDirector").val(); //导演
+                    var WorkTitle = $("input#inputWorkTitle").val(); //作品名称
+                    var AboutWork = $("textarea#inputAboutWork").val(); //短片介绍
+                    // var WorkVideo = VideoUrl; //上传视频
+                    // var WorkPhoto = ThumbUrl; //上传封面
+                    var WorkVideo = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616093025726386.mp4";
+                    var WorkPhoto = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616052795369426.jpg";
+
+
+
+
+                    if (workType && Name.trim() && Film.trim() && Phone.trim() && Id.trim() && Teams.trim() && Director.trim() && WorkTitle.trim() && AboutWork.trim() && WorkVideo && WorkPhoto) {
+
                         var postData = {
                             "name": Name,
                             "company": Film,
@@ -348,24 +356,21 @@
                             dataType: 'json',
                             contentType: "application/json",
                             data: JSON.stringify(postData),
-                            // error: function(xhr, status, error) {
-                            //     alert("错误错误！！！！！");
-                            // },
                             success: function(result) {
                                 console.log(result.message)
                                 alert(result.message);
                             },
                             error: function() {
-						      alert('Whoops! This didn\'t work. Please contact us.')
-					        }
+                                alert('Whoops! This didn\'t work. Please contact us.')
+                            }
                         });
-                        return false;
-                });
 
+                    }
+                    return false;
+                }
             });
         });
     });
-});
     </script>
 </body>
 
