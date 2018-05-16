@@ -106,18 +106,29 @@
                             <button type="button" class="btn btn-warning btn-block col-sm-3" onclick="document.getElementById('inputWorkVideo').click()">上传视频</button>
                             <div class="form-group inputDnD col-sm-3">
                                 <label class="sr-only" for="inputWorkVideo">File Upload</label>
-                                <input type="file" class="form-control-file text-warning font-weight-bold" id="inputWorkVideo" accept="image/*" onchange="readUrl(this)" data-title="拖拉文件可以到此框">
+                                <input type="file" class="form-control-file text-warning font-weight-bold" id="inputWorkVideo" accept="audio/*" onchange="readUrl(this)" data-title="拖拉文件可以到此框">
+                                <!-- onchange="readUrl(this)" -->
                             </div>
-                            <span id="inputWorkPhoto-error" class="error">封面必须上传</span>
+                            <!--   <span id="inputWorkPhoto-error" class="error">视频必须上传</span> -->
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-inline col-12">
                             <label for="inputWorkPhoto" class="col-sm-3 col-form-label">上传封面：</label>
-                            <input class="file-upload btn btn-warning" type="file" name="inputWorkPhoto" id="inputWorkPhoto" />
+                            <label class="file-upload btn btn-warning col-sm-3 mr-2"> 上传图片
+                                <input type="file" name="inputWorkPhoto" id="inputWorkPhoto" class="" />
+                            </label>
                             <small class="form-text text-yellow">（建议尺寸：180*100px）</small>
-                            <!--      <span id="sucpic"></span>
-                            <i><span class="field-validation-valid" data-valmsg-for="ThumbUrl" data-valmsg-replace="true"><span for="ThumbUrl" class="">封面必须上传</span></span></i> -->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputWorkPhoto" class="col-sm-3 col-form-label">上传图片：</label>
+                            <label class="custom-file col-sm-5" id="customFile">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
+                                <span class="custom-file-control form-control-file"></span>
+                            </label>
+                            <small class="form-text text-yellow">（建议尺寸：180*100px）</small>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -131,7 +142,8 @@
             <div class="row form-submit">
                 <div class="form-group row">
                     <div class="save_button">
-                        <button type="submit" class="btn btn-block btn-danger btn-submit" aria-disabled="true" id="Submit-Sure" disabled="disabled">确认报名</button>
+                        <button type="submit" class="btn btn-block btn-danger btn-submit"
+                        aria-disabled="true" id="Submit-Sure" disabled="disabled">确认报名</button>
                     </div>
                 </div>
                 <p class="save_hint">
@@ -140,25 +152,50 @@
             </div>
         </form>
     </div>
-    <script src="http://static.jstv.com/ui/common/file/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="images/jquery.validate.min.js"></script>
     <script src="images/file-upload.js"></script>
     <script>
+    // 自定义文件上传样式
+
+    $('.custom-file-input').on('change', function() {
+        $(this).next('.form-control-file').addClass("selected").html($(this).val());
+    })
+
+    // 显示上传视频文件名
+    function readUrl(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                let imgData = e.target.result;
+                let imgName = input.files[0].name;
+                input.setAttribute("data-title", imgName);
+                console.log(e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     $(document).ready(function() {
 
         $('.file-upload').file_upload();
 
         // 同意条款
+
         $("#customControlInline").change(function() {
-            if ($(this).is(':checked'))
-                $("#Submit-Sure").removeAttr("disabled")
-            else $("#Submit-Sure")
-                .attr("disabled", "disabled")
+            if ($(this).is(':checked')){
+				console.log($("#Submit-Sure"));
+				$("#Submit-Sure").removeAttr("disabled")
+            } else {
+            	$("#Submit-Sure").attr("disabled", "disabled")
+            }
         });
 
-        var VideoUrl, ThumbUrl;
+        // var VideoUrl, ThumbUrl;
+        var WorkVideo = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616384156012107.mp4"
+        var WorkPhoto = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616384440782377.jpg"
 
         function setFileloader1(obj, displayDiv) {
             $(obj).change(function() {
@@ -204,7 +241,6 @@
         setFileloader2('#inputWorkPhoto', '#sucpic');
 
         $.validator.setDefaults({
-
             highlight: function(element) {
                 $(element).closest(".form-group").addClass("has-error");
             },
@@ -216,11 +252,6 @@
             errorElement: "span",
             errorClass: "error",
             errorPlacement: function(error, element) {
-                // if (element.parent(".input-group").length || element.prop("type") === "checkbox" || element.prop("type") === "radio") {
-                //     error.insertAfter(element.parent());
-                // } else {
-                //     error.insertAfter(element);
-                // }
 
                 if (element.prop("type") === "radio") {
                     console.log(element.prop("type"))
@@ -228,13 +259,30 @@
                     console.log(element)
                 } else if (element.prop("type") === "file") {
                     //debugger;
+                    console.log(element.prop("type"))
                     element.parent().after(error);
+                    console.log(error)
                 } else {
                     error.insertAfter(element);
                 }
 
             }
         });
+
+		// console.log(workType)
+		// console.log(Name)
+		// console.log(Film)
+		// console.log(Phone)
+		// console.log(Id)
+		// console.log(Id)
+		// console.log(Teams)
+		// console.log(Director)
+		// console.log(WorkTitle)
+		// console.log(AboutWork)
+		// console.log(WorkVideo)
+		// console.log(WorkPhoto)
+
+      $("#Submit-Sure").click(function(e) {
 
         $("#myform").validate({
             rules: {
@@ -245,9 +293,9 @@
                 inputTeams: { required: true, },
                 inputDirector: { required: true, },
                 inputWorkTitle: { required: true, },
-                inputAboutWork: { required: true, },
-                inputWorkVideo: { required: true, },
-                inputWorkPhoto: { required: true, }
+                inputAboutWork: { required: true, }
+                // inputWorkVideo: { required: true, },
+                // inputWorkPhoto: { required: true, }
             },
             messages: {
                 workType: { required: "作品类型必填", },
@@ -257,71 +305,67 @@
                 inputTeams: { required: "主创人员必填", },
                 inputDirector: { required: "导演必填", },
                 inputWorkTitle: { required: "作品名称必填", },
-                inputAboutWork: { required: "介绍必填", },
-                inputWorkVideo: { required: "请上传视频" },
-                inputWorkPhoto: { required: "封面必须上传" }
+                inputAboutWork: { required: "介绍必填", }
+                //  inputWorkVideo: { required: "视频必须上传" },
+                // inputWorkPhoto: { required: "封面必须上传" }
             },
-            submitHandler: function(event) {
-                event.preventDefault();
-                // $(form).submit();
-                submitAction();
-            }
-        });
+            submitHandler(function(form, event) {
 
-        function submitAction() {
-            $("#Submit-Sure").click(function(e) {
-                // e.preventDefault();
-                //
-                var workType = $("input[type=radio][name=workType]:checked").val(); //作品类型
-                var Name = $("#inputName").val(); //送报人姓名
-                var Film = $("#inputFilm").val(); //联系电话
-                var Phone = $("#inputPhone").val(); //身份证号码
-                var Id = $("#inputId").val(); //身份证号码
-                var Teams = $("#inputTeams").val(); //主创人员
-                var Director = $("#inputDirector").val(); //导演
-                var WorkTitle = $("#inputWorkTitle").val(); //作品名称
-                var AboutWork = $("#inputAboutWork").val(); //短片介绍
-                var WorkVideo = VideoUrl; //上传视频
-                var WorkPhoto = ThumbUrl; //上传封面
+				event.preventDefault();
+				// $(form).submit(function()
+				var workType = $("input[type=radio][name=workType]:checked").val(); //作品类型
+				var Name = $("input#inputName").val(); //送报人姓名
+				var Film = $("input#inputFilm").val(); //联系电话
+				var Phone = $("input#inputPhone").val(); //身份证号码
+				var Id = $("input#inputId").val(); //身份证号码
+				var Teams = $("input#inputTeams").val(); //主创人员
+				var Director = $("input#inputDirector").val(); //导演
+				var WorkTitle = $("input#inputWorkTitle").val(); //作品名称
+				var AboutWork = $("textarea#inputAboutWork").val(); //短片介绍
+				// var WorkVideo = VideoUrl; //上传视频
+				// var WorkPhoto = ThumbUrl; //上传封面
+				var WorkVideo = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616093025726386.mp4";
+				var WorkPhoto = "https://hdstatic.blob.core.chinacloudapi.cn/act2017/2018051616052795369426.jpg";
 
+       			if (workType && Name.trim() && Film.trim() && Phone.trim() && Id.trim() && Teams.trim() && Director.trim() && WorkTitle.trim() && AboutWork.trim() && WorkVideo && WorkPhoto) {
+                        var postData = {
+                            "name": Name,
+                            "company": Film,
+                            "phone": Phone,
+                            "number": Id,
+                            "mainPeople": Teams,
+                            "director": Director,
+                            "worksName": WorkTitle,
+                            "worksDesc": AboutWork,
+                            "worksType": parseInt(workType),
+                            "videoUrl": WorkVideo,
+                            "thumbUrl": WorkPhoto
+                        };
+                        console.log(postData);
+                        $.ajax({
+                            url: "http://hd2.jstv.com/webvideo/ShortVideo/Add",
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: "application/json",
+                            data: JSON.stringify(postData),
+                            // error: function(xhr, status, error) {
+                            //     alert("错误错误！！！！！");
+                            // },
+                            success: function(result) {
+                                console.log(result.message)
+                                alert(result.message);
+                            },
+                            error: function() {
+						      alert('Whoops! This didn\'t work. Please contact us.')
+					        }
+                        });
+                        return false;
+                });
 
-                $("[data-toggle='tooltip']").tooltip();
-
-                console.log(workType, Name, Film, Phone, Id, Teams, Director, WorkTitle, AboutWork, WorkVideo, WorkPhoto)
-                if (!workType && !Name.trim() && !Film.trim() && !Phone.trim() && !Id.trim() && !Teams.trim() && !Director.trim() && !WorkTitle.trim() && !AboutWork.trim() && !WorkVideo && !WorkPhoto) {
-                    var postData = {
-                        "worksType": parseInt(workType),
-                        "name": Name,
-                        "company": Film,
-                        "phone": Phone,
-                        "number": Id,
-                        "mainPeople": Teams,
-                        "director": Director,
-                        "worksName": WorkTitle,
-                        "worksDesc": AboutWork,
-                        "videoUrl": WorkVideo,
-                        "thumbUrl": WorkPhoto
-                    };
-                    $.ajax({
-                        url: "http://hd2.jstv.com/webvideo/ShortVideo/Add",
-                        type: 'POST',
-                        dataType: 'json',
-                        contentType: "application/json",
-                        data: JSON.stringify(postData),
-                        error: function(xhr, status, error) {
-                            alert("错误错误！！！！！");
-                        },
-                        success: function(result) {
-                            alert(result.message);
-                        }
-                    });
-
-                } else {
-                    return
-                }
             });
-        }
+        });
     });
+});
     </script>
 </body>
 
