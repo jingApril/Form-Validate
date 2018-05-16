@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="images/index.css" type="text/css" />
+    <title>改革开放四十周年微视频大赛</title>
+    <style>
+.inputDnD .form-control-file{position:relative;width:100%;height:100%;min-height:6em;outline:none;visibility:hidden;cursor:pointer;background-color:#c61c23;box-shadow:0 0 5px solid currentColor;}
+.inputDnD .form-control-file:before{content:attr(data-title);position:absolute;top:0.5em;left:0;width:100%;min-height:6em;line-height:2em;padding-top:1.5em;opacity:1;visibility:visible;text-align:center;border:0.25em dashed currentColor;transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);overflow:hidden;}
+.inputDnD .form-control-file:hover:before{border-style:solid;box-shadow:inset 0px 0px 0px 0.25em currentColor;}
+.form-inline{position:relative;}
+.invalid-tooltip{position:absolute;top:100%;z-index:5;display:none;        /* max-width: 100%; */padding:.5rem;        /* margin-top: .1rem; */font-size:.875rem;line-height:1;color:#fff;background-color:#ffc107;border-radius:.2rem;left:26%;}
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form id="myform" class="needs-validation" novalidate>
+            <div class="row form-body">
+                <div class="form-container" name="registration">
+                    <h1 class="form-title"> “网络短片”主单元</h1>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="workType" class="col-sm-3 col-form-label">作品类型：</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="workType" type="radio" id="inlineRadio1" value="1">
+                                    <label class="form-check-label" for="inlineRadio1">剧情短片</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="workType" type="radio" id="inlineRadio2" value="2">
+                                    <label class="form-check-label" for="inlineRadio2">纪录短片</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="workType" type="radio" id="inlineRadio3" value="3">
+                                    <label class="form-check-label" for="inlineRadio3">形象短片 </label>
+                                </div>
+                            </div>
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputName" class="col-sm-3 col-form-label">报送人姓名：</label>
+                            <input type="text" name="inputName" id="inputName" class="form-control col-sm-6 mr-2" placeholder="姓名" />
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputFilm" class="col-sm-3 col-form-label">报送单位：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputFilm" id="inputFilm" placeholder="单位名称" />
+                            <small class="form-text text-white col-sm-2">如个人报送不需要填写，单位报送必填</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputPhone" class="col-sm-3 col-form-label">联系电话：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputPhone" id="inputPhone" placeholder="电话号码" />
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputId" class="col-sm-3 col-form-label">身份证号码：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputId" id="inputId" placeholder="身份证号码" />
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputTeams" class="col-sm-3 col-form-label">主创人员：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputTeams" id="inputTeams" placeholder="张三，李四" required/>
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputDirector" class="col-sm-3 col-form-label">导演：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputDirector" id="inputDirector" placeholder="张三，李四" required/>
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputWorkTitle" class="col-sm-3 col-form-label">作品名称：</label>
+                            <input type="text" class="form-control col-sm-6 mr-2" name="inputWorkTitle" id="inputWorkTitle" placeholder="作品名称" required/>
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputAboutWork" class="col-sm-3 col-form-label">短片介绍：</label>
+                            <textarea rows="4" class="form-control col-sm-6 mr-2" name="inputAboutWork" id="inputAboutWork" placeholder="短片简介" required></textarea>
+                            <small class="form-text text-yellow">*</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputWorkVideo" class="col-sm-3 col-form-label">上传视频：</label>
+                            <button type="button" class="btn btn-warning btn-block col-sm-3" onclick="document.getElementById('inputWorkVideo').click()">上传视频</button>
+                            <div class="form-group inputDnD col-sm-3">
+                                <label class="sr-only" for="inputWorkVideo">File Upload</label>
+                                <input type="file" class="form-control-file text-warning font-weight-bold" id="inputWorkVideo" accept="image/*" onchange="readUrl(this)" data-title="拖拉文件可以到此框">
+                            </div>
+                            <span id="inputWorkPhoto-error" class="error">封面必须上传</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-inline col-12">
+                            <label for="inputWorkPhoto" class="col-sm-3 col-form-label">上传封面：</label>
+                            <input class="file-upload btn btn-warning" type="file" name="inputWorkPhoto" id="inputWorkPhoto" />
+                            <small class="form-text text-yellow">（建议尺寸：180*100px）</small>
+                            <!--      <span id="sucpic"></span>
+                            <i><span class="field-validation-valid" data-valmsg-for="ThumbUrl" data-valmsg-replace="true"><span for="ThumbUrl" class="">封面必须上传</span></span></i> -->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">我已经同意大赛规则所有条款</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-submit">
+                <div class="form-group row">
+                    <div class="save_button">
+                        <button type="submit" class="btn btn-block btn-danger btn-submit" aria-disabled="true" id="Submit-Sure" disabled="disabled">确认报名</button>
+                    </div>
+                </div>
+                <p class="save_hint">
+                    *如若页面上传作品不成功，请将作品和报名所需的信息内容发送至邮箱702011942@qq.com， 谢谢合作。
+                </p>
+            </div>
+        </form>
+    </div>
+    <script src="http://static.jstv.com/ui/common/file/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="images/jquery.validate.min.js"></script>
+    <script src="images/file-upload.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        $('.file-upload').file_upload();
+
+        // 同意条款
+        $("#customControlInline").change(function() {
+            if ($(this).is(':checked'))
+                $("#Submit-Sure").removeAttr("disabled")
+            else $("#Submit-Sure")
+                .attr("disabled", "disabled")
+        });
+
+        var VideoUrl, ThumbUrl;
+
+        function setFileloader1(obj, displayDiv) {
+            $(obj).change(function() {
+                var fd = new FormData();
+                fd.append("img1", $(obj)[0].files[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener("load", function(e) {
+                    setTimeout(function() {}, 400);
+                    var data = $.parseJSON(e.target.responseText);
+                    $(displayDiv).html(data.message);
+                    if (data.code === 200) {
+                        VideoUrl = data.data;
+                        console.log(VideoUrl)
+                    }
+                }, false);
+                xhr.open('post', 'http://hd2.jstv.com/webvideo/Upload', true);
+                xhr.send(fd);
+            });
+        }
+
+        function setFileloader2(obj, displayDiv) {
+            $(obj).change(function() {
+                var fd = new FormData();
+                fd.append("img1", $(obj)[0].files[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener("load", function(e) {
+                    setTimeout(function() {
+                        // $(progressObj).hide();
+                    }, 400);
+                    var data = $.parseJSON(e.target.responseText);
+                    $(displayDiv).html(data.message);
+                    if (data.code === 200) {
+                        ThumbUrl = data.data;
+                        console.log(ThumbUrl)
+                    }
+                }, false);
+                xhr.open('post', 'http://hd2.jstv.com/webvideo/Upload', true);
+                xhr.send(fd);
+            });
+        }
+
+        setFileloader1('#inputWorkVideo', '#suc');
+        setFileloader2('#inputWorkPhoto', '#sucpic');
+
+        $.validator.setDefaults({
+
+            highlight: function(element) {
+                $(element).closest(".form-group").addClass("has-error");
+            },
+
+            unhighlight: function(element) {
+                $(element).closest(".form-group").removeClass("has-error");
+            },
+
+            errorElement: "span",
+            errorClass: "error",
+            errorPlacement: function(error, element) {
+                // if (element.parent(".input-group").length || element.prop("type") === "checkbox" || element.prop("type") === "radio") {
+                //     error.insertAfter(element.parent());
+                // } else {
+                //     error.insertAfter(element);
+                // }
+
+                if (element.prop("type") === "radio") {
+                    console.log(element.prop("type"))
+                    error.insertAfter(element.parent().parent())
+                    console.log(element)
+                } else if (element.prop("type") === "file") {
+                    //debugger;
+                    element.parent().after(error);
+                } else {
+                    error.insertAfter(element);
+                }
+
+            }
+        });
+
+        $("#myform").validate({
+            rules: {
+                workType: { required: true, },
+                inputName: { required: true, },
+                inputPhone: { required: true, },
+                inputId: { required: true, },
+                inputTeams: { required: true, },
+                inputDirector: { required: true, },
+                inputWorkTitle: { required: true, },
+                inputAboutWork: { required: true, },
+                inputWorkVideo: { required: true, },
+                inputWorkPhoto: { required: true, }
+            },
+            messages: {
+                workType: { required: "作品类型必填", },
+                inputName: { required: "报送人姓名必填", },
+                inputPhone: { required: "报送人姓名必填", },
+                inputId: { required: "身份证号码必填", },
+                inputTeams: { required: "主创人员必填", },
+                inputDirector: { required: "导演必填", },
+                inputWorkTitle: { required: "作品名称必填", },
+                inputAboutWork: { required: "介绍必填", },
+                inputWorkVideo: { required: "请上传视频" },
+                inputWorkPhoto: { required: "封面必须上传" }
+            },
+            submitHandler: function(event) {
+                event.preventDefault();
+                // $(form).submit();
+                submitAction();
+            }
+        });
+
+        function submitAction() {
+            $("#Submit-Sure").click(function(e) {
+                // e.preventDefault();
+                //
+                var workType = $("input[type=radio][name=workType]:checked").val(); //作品类型
+                var Name = $("#inputName").val(); //送报人姓名
+                var Film = $("#inputFilm").val(); //联系电话
+                var Phone = $("#inputPhone").val(); //身份证号码
+                var Id = $("#inputId").val(); //身份证号码
+                var Teams = $("#inputTeams").val(); //主创人员
+                var Director = $("#inputDirector").val(); //导演
+                var WorkTitle = $("#inputWorkTitle").val(); //作品名称
+                var AboutWork = $("#inputAboutWork").val(); //短片介绍
+                var WorkVideo = VideoUrl; //上传视频
+                var WorkPhoto = ThumbUrl; //上传封面
+
+
+                $("[data-toggle='tooltip']").tooltip();
+
+                console.log(workType, Name, Film, Phone, Id, Teams, Director, WorkTitle, AboutWork, WorkVideo, WorkPhoto)
+                if (!workType && !Name.trim() && !Film.trim() && !Phone.trim() && !Id.trim() && !Teams.trim() && !Director.trim() && !WorkTitle.trim() && !AboutWork.trim() && !WorkVideo && !WorkPhoto) {
+                    var postData = {
+                        "worksType": parseInt(workType),
+                        "name": Name,
+                        "company": Film,
+                        "phone": Phone,
+                        "number": Id,
+                        "mainPeople": Teams,
+                        "director": Director,
+                        "worksName": WorkTitle,
+                        "worksDesc": AboutWork,
+                        "videoUrl": WorkVideo,
+                        "thumbUrl": WorkPhoto
+                    };
+                    $.ajax({
+                        url: "http://hd2.jstv.com/webvideo/ShortVideo/Add",
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: "application/json",
+                        data: JSON.stringify(postData),
+                        error: function(xhr, status, error) {
+                            alert("错误错误！！！！！");
+                        },
+                        success: function(result) {
+                            alert(result.message);
+                        }
+                    });
+
+                } else {
+                    return
+                }
+            });
+        }
+    });
+    </script>
+</body>
+
+</html>
